@@ -22,12 +22,14 @@ jobs:
         with:
           node-version: 20
 
-      - name: 安裝套件
-        run: npm install
+    - name: 安裝套件
+      run: npm install
+      working-directory: ./order-system
 
-      - name: 打包專案
-        run: npm run build
-
+    - name: 打包專案
+      run: npm run build
+      working-directory: ./order-system
+      
       - uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
