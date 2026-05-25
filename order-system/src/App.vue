@@ -70,14 +70,25 @@ import PrizeShop from './components/PrizeShop.vue'
 import RegisterModal from './components/RegisterModal.vue'
 import Leaderboard from './components/Leaderboard.vue'
 
-// 音效與音樂
-const hoverAudio = new Audio('/hover.mp3') 
-const clickAudio = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3')
-const successAudio = new Audio('/success.mp3')
-const flipAudio = new Audio('/flip.mp3')
-const mainBgmAudio = new Audio('/bgm.mp3')
-mainBgmAudio.loop = true 
-mainBgmAudio.volume = 0.3 
+// 修改宣告，加上 import.meta.env.BASE_URL
+const baseUrl = import.meta.env.BASE_URL;
+
+const hoverAudio = new Audio(baseUrl + 'hover.mp3');
+const clickAudio = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3'); // 外部連結不需改
+const successAudio = new Audio(baseUrl + 'success.mp3');
+const flipAudio = new Audio(baseUrl + 'flip.mp3');
+const attackAudio = new Audio(baseUrl + 'attack.mp3');
+const optionHoverAudio = new Audio(baseUrl + 'option-hover.mp3');
+const enterAudio = new Audio(baseUrl + 'enter.mp3');
+
+const mainBgmAudio = new Audio(baseUrl + 'bgm.mp3');
+mainBgmAudio.loop = true;
+mainBgmAudio.volume = 0.3;
+
+// BattleMap 內如果也有用到 Battle BGM，請記得同步修改：
+const battleBgm1 = new Audio(baseUrl + 'battle_bgm1.mp3');
+const battleBgm2 = new Audio(baseUrl + 'battle_bgm2.mp3');
+const battleBgm3 = new Audio(baseUrl + 'battle_bgm3.mp3');
 
 // 狀態管理
 const isRegistered = ref(false)
