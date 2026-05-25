@@ -63,7 +63,6 @@ const props = defineProps({
 
 const emit = defineEmits(['gain-point', 'enter-battle', 'leave-battle', 'stage-cleared'])
 
-// 在 script setup 區塊中，修正這些 Audio 的宣告方式：
 const baseUrl = import.meta.env.BASE_URL;
 
 const attackAudio = new Audio(baseUrl + 'attack.mp3'); 
@@ -73,6 +72,9 @@ const enterAudio = new Audio(baseUrl + 'enter.mp3');
 const battleBgm1 = new Audio(baseUrl + 'battle_bgm1.mp3');
 const battleBgm2 = new Audio(baseUrl + 'battle_bgm2.mp3');
 const battleBgm3 = new Audio(baseUrl + 'battle_bgm3.mp3');
+
+// 💡 剛剛就是遺漏了這一行！
+const battleBgms = [battleBgm1, battleBgm2, battleBgm3];
 
 battleBgms.forEach(bgm => {
   bgm.loop = true
@@ -179,11 +181,10 @@ const checkAnswer = (selectedWord) => {
   }
 }
 
-// 💡 確保只有一個 handleStageClear 定義
 const handleStageClear = () => {
   stageCleared.value = true
   emit('gain-point')
-  emit('stage-cleared') // 確保 emit 正確觸發
+  emit('stage-cleared')
   
   if (currentBattleBgm) currentBattleBgm.pause()
   
