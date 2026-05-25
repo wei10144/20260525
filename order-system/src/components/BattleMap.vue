@@ -63,14 +63,16 @@ const props = defineProps({
 
 const emit = defineEmits(['gain-point', 'enter-battle', 'leave-battle', 'stage-cleared'])
 
-const attackAudio = new Audio('/attack.mp3') 
-const optionHoverAudio = new Audio('/option-hover.mp3') 
-const enterAudio = new Audio('/enter.mp3') 
+// 在 script setup 區塊中，修正這些 Audio 的宣告方式：
+const baseUrl = import.meta.env.BASE_URL;
 
-const battleBgm1 = new Audio('/battle_bgm1.mp3')
-const battleBgm2 = new Audio('/battle_bgm2.mp3')
-const battleBgm3 = new Audio('/battle_bgm3.mp3')
-const battleBgms = [battleBgm1, battleBgm2, battleBgm3]
+const attackAudio = new Audio(baseUrl + 'attack.mp3'); 
+const optionHoverAudio = new Audio(baseUrl + 'option-hover.mp3'); 
+const enterAudio = new Audio(baseUrl + 'enter.mp3'); 
+
+const battleBgm1 = new Audio(baseUrl + 'battle_bgm1.mp3');
+const battleBgm2 = new Audio(baseUrl + 'battle_bgm2.mp3');
+const battleBgm3 = new Audio(baseUrl + 'battle_bgm3.mp3');
 
 battleBgms.forEach(bgm => {
   bgm.loop = true
